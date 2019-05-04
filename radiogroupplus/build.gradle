@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.longegit'
+
+android {
+    compileSdkVersion buildVersion.compileSdk
+
+    defaultConfig {
+        minSdkVersion buildVersion.minSdk
+        targetSdkVersion buildVersion.compileSdk
+        versionCode releaseVersion.code
+        versionName releaseVersion.name
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation "junit:junit:${depVersions.testLibs.junit}"
+    provided "com.android.support:appcompat-v7:${depVersions.googleLibs.support}"
+}
